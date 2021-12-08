@@ -1,18 +1,28 @@
-import React from "react";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
-const useAuth = () => {
-  const [accessToken, SetAccessToken] = useState();
+const useAuth = (code) => {
+  const [accessToken, setAccessToken] = useState();
   const [refreshToken, setRefreshToken] = useState();
   const [expiresIn, setExpiresIn] = useState();
 
   useEffect(() => {
-    const fetchToken = async () => {
-      const res = await fetch(`/login`);
-      const data = await res.json();
-      console.log(data);
-    };
+    axios
+      .post("/login", {
+        code,
+      })
+      .then((res) => {
+        setAccessToken(res.data.accessToken);
+        setRefreshToken(res.data.refreshToken);
+        setExpiresIn(res.data.expiresIn);
+        window.history.pushState({}, null, "/");
+      })
+      .catch(() => {
+        window.location = "/";
+      });
+  }, [code]);
 
-    fetchReservation();
-  }, []);
+  return accessToken;
 };
+
+export default useAuth;
