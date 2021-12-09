@@ -18,7 +18,7 @@ var client_id = CLIENT_ID;
 
 const PORT = 7777;
 
-var redirect_uri = "http://localhost:7777/callback";
+var redirect_uri = "http://localhost:3000";
 
 const generateRandomString = (length) => {
   // Declare all characters
