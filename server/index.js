@@ -6,10 +6,12 @@ var request = require("request"); // "Request" library
 const querystring = require("querystring");
 const cors = require("cors");
 const lyricsFinder = require("lyrics-finder");
+const bodyParser = require("body-parser");
 
 require("dotenv").config();
 
 express().use(cors());
+express().use(bodyParser.json());
 
 const { CLIENT_ID, CLIENT_SECRET } = process.env;
 
@@ -35,6 +37,29 @@ const generateRandomString = (length) => {
 
 express()
   .use(express.json())
+
+  .post("/refresh", (req, res) => {
+    const refreshToken = req.body.refreshToken;
+    const spotifyApi = new SpotifyWebApi({
+      edirectUri: redirect_uri,
+      clientId: client_id,
+      clientSecret: client_secret,
+      refreshToken,
+    });
+
+    spotifyApi
+      .refreshAccessToken()
+      .then((data) => {
+        res.json({
+          accessToken: data.body.access_token,
+          expiresIn: data.body.expires_in,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(400);
+      });
+  })
 
   .post("/login", (req, res) => {
     const code = req.body.code;

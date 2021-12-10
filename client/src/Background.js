@@ -14,5 +14,5 @@ export default Background;
 
 const Wrapper = styled.img`
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 `;

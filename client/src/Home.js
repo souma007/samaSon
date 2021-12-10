@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Background from "./Background";
 
-const Header = () => {
+const Home = () => {
   return (
     <Main>
       <Background />
@@ -10,6 +10,6 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Home;
 
 const Main = styled.div``;
