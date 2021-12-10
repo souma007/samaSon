@@ -19,7 +19,6 @@ const Header = ({ code }) => {
           </Container>
         )}
       </h1>
-      <Search type="text" placeholder="Songs/Artists"></Search>
       <h1>
         <Home to="/"> Music Galaxy </Home>
       </h1>
@@ -58,5 +57,3 @@ const Container = styled.div`
 const Title = styled.h1`
   color: white;
 `;
-
-const Search = styled.input``;
