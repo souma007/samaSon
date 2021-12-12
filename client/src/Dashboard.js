@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import React from "react";
 import useAuth from "./useAuth";
 import SpotifyWebApi from "spotify-web-api-node";
 import axios from "axios";
@@ -7,6 +8,7 @@ import styled from "styled-components";
 import black from "./background/black.jpeg";
 import TrackResult from "./TrackResult";
 import Player from "./Player";
+import Playlist from "./Playlist";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: "ea01f9e43e4746eca67543f410ac56d7",
@@ -120,32 +122,34 @@ const Dashboard = ({ code }) => {
 
   return (
     <Main>
-      <SearchBar>
-        <Search
-          type="text"
-          placeholder="Songs/Artists"
-          value={search}
-          onChange={(event) => handleChange(event)}
-        ></Search>
-        <ul>
-          {/* {value.length > 2 && /// Jsx and operator conditions */}
-          {searchResults.map((song) => {
-            return (
-              <Suggestion
-                key={song.id}
-                // onClick={}
-              >
-                <TrackResult track={song} chooseTrack={chooseTrack} />
-              </Suggestion>
-            );
+      <Wrapper>
+        <SearchBar>
+          <Search
+            type="text"
+            placeholder="Songs/Artists"
+            value={search}
+            onChange={(event) => handleChange(event)}
+          ></Search>
+          <ul>
+            {/* {value.length > 2 && /// Jsx and operator conditions */}
+            {searchResults.map((song) => {
+              return (
+                <Suggestion
+                  key={song.id}
+                  // onClick={}
+                >
+                  <TrackResult track={song} chooseTrack={chooseTrack} />
+                </Suggestion>
+              );
+            })}
+          </ul>
+        </SearchBar>
+        <PlaylistsListing>
+          {playlists.map((playlist) => {
+            return <Playlist playlist={playlist} />;
           })}
-        </ul>
-      </SearchBar>
-      <PlaylistsListing>
-        {playlists.map((playlist) => {
-          return <Playlist playlist={playlist} />;
-        })}
-      </PlaylistsListing>
+        </PlaylistsListing>
+      </Wrapper>
       <Record>
         <Player
           accessToken={accessToken}
@@ -161,7 +165,7 @@ export default Dashboard;
 const Main = styled.div`
   background-image: url(${black});
   width: 100%;
-  height: 80vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -181,3 +185,16 @@ const Suggestion = styled.li`
 `;
 
 const Record = styled.div``;
+
+const SearchBar = styled.div``;
+
+const PlaylistsListing = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 50px;
+  border: solid white;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+`;
