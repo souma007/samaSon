@@ -9,13 +9,18 @@ import black from "./background/black.jpeg";
 import TrackResult from "./TrackResult";
 import Player from "./Player";
 import Playlist from "./Playlist";
+import { UseAuthContext } from "./UseAuthProvider";
+import { useContext } from "react";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: "ea01f9e43e4746eca67543f410ac56d7",
 });
 
 const Dashboard = ({ code }) => {
-  const accessToken = useAuth(code);
+  const { setAccessToken, accessToken } = useContext(UseAuthContext);
+
+  setAccessToken(useAuth(code));
+
   console.log(accessToken);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);

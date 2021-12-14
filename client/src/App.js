@@ -6,10 +6,16 @@ import Home from "./Home";
 import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 import PlaylistDetails from "./PlaylistDetails";
-
-const code = new URLSearchParams(window.location.search).get("code");
+// import { UseAuthContext } from "./UseAuthProvider";
+// import { useContext } from "react";
 
 const App = () => {
+  const code = new URLSearchParams(window.location.search).get("code");
+
+  // const { setCode } = useContext(UseAuthContext);
+
+  // code && setCode(code);
+
   return (
     <BrowserRouter>
       <GlobalStyles />
