@@ -33,7 +33,10 @@ const Main = styled.div`
   border: red solid;
 `;
 
-const Cover = styled.img``;
+const Cover = styled.img`
+  box-shadow: 0px 0px 10px grey;
+  border: red solid;
+`;
 
 const InfoPlaylist = styled.div``;
 

@@ -26,6 +26,7 @@ const Main = styled.div`
   background-color: black;
   margin: 25px;
   display: flex;
+  box-shadow: 0px 0px 10px grey;
 `;
 
 const Cover = styled.img`
@@ -34,11 +35,10 @@ const Cover = styled.img`
 `;
 
 const InfoTrack = styled.div`
-  color: white
-  background-color: red;
-  border: red solid;
+  color: white;
+
   width: 300px;
-  padding: 25px
+  padding: 25px;
 `;
 
 const Title = styled.div`

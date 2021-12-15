@@ -7,6 +7,7 @@ import SpotifyWebApi from "spotify-web-api-node";
 import { useState } from "react";
 import TrackPlaylistResult from "./TrackPlaylistResult";
 import Player from "./Player";
+import blue from "./background/blue.jpeg";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: "ea01f9e43e4746eca67543f410ac56d7",
@@ -88,7 +89,9 @@ const PlaylistDetails = () => {
 
 export default PlaylistDetails;
 
-const Main = styled.div``;
+const Main = styled.div`
+  background-image: url(${blue});
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -97,7 +100,7 @@ const Wrapper = styled.div`
 `;
 
 const Art = styled.div`
-  border: red solid;
+  /* border: red solid; */
 `;
 
 const Image = styled.img``;
@@ -107,18 +110,21 @@ const Name = styled.div`
 `;
 
 const Tracklist = styled.div`
-  border: green solid;
+  /* border: red solid; */
   margin: 100px;
   padding: 50px;
+  box-shadow: 0px 0px 10px grey;
 `;
 
 const Creator = styled.div`
-  border: blue solid;
+  /* border: blue solid; */
   height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 0px 10px grey;
+  margin: 50px;
 `;
 
 const Title = styled.div`
