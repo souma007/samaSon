@@ -12,37 +12,48 @@ import Playlist from "./Playlist";
 import { UseAuthContext } from "./UseAuthProvider";
 import { useContext } from "react";
 
+// creation of the spotify function
+
 const spotifyApi = new SpotifyWebApi({
   clientId: "ea01f9e43e4746eca67543f410ac56d7",
 });
 
+//Dashboard Page
+
 const Dashboard = ({ code }) => {
+  // Get the my 2 unassigned variables from useContext to get their value on the next line
   const { setAccessToken, accessToken } = useContext(UseAuthContext);
 
+  // Set the Token to his value
   setAccessToken(useAuth(code));
 
   console.log(accessToken);
+
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [playingTrack, setPlayingTrack] = useState();
   const [userId, setUserId] = useState(undefined);
   const [playlists, setPlaylists] = useState([]);
 
+  // Creation of a function that will give PlayingTrack a value
   const chooseTrack = (track) => {
     setPlayingTrack(track);
     setSearch("");
   };
 
+  // Function to Set my search value
   const handleChange = (event) => {
     event.preventDefault();
     setSearch(event.target.value);
   };
 
+  // Provide the Access Token to have access to the spotify api everytim an acess token is rendered
   useEffect(() => {
     if (!accessToken) return;
     spotifyApi.setAccessToken(accessToken);
   }, [accessToken]);
 
+  // get the id info about my spotify user account
   useEffect(() => {
     if (!accessToken) return;
     spotifyApi.getMe().then(
@@ -58,12 +69,14 @@ const Dashboard = ({ code }) => {
     );
   }, [accessToken]);
 
+  // fetching the playlists of the spotify users
   useEffect(() => {
     // if (!userId) return;
     console.log(userId);
     spotifyApi.getUserPlaylists(userId).then(
       function (data) {
         console.log("My playlists", data.body);
+        // creating an array of the playlists with the needed variables
         const playlists = data.body.items.map((playlist) => {
           const smallestPlaylistImage = playlist.images.reduce(
             (smallest, image) => {
@@ -72,7 +85,7 @@ const Dashboard = ({ code }) => {
             },
             playlist.images[0]
           );
-
+          // informations needed of my playlist
           return {
             id: playlist.id,
             owner: playlist.owner.display_name,
@@ -82,7 +95,7 @@ const Dashboard = ({ code }) => {
             playlistUrl: smallestPlaylistImage.url,
           };
         });
-
+        // Setplaylists6k
         setPlaylists(playlists);
       },
       function (err) {

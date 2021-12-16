@@ -10,11 +10,8 @@ import PlaylistDetails from "./PlaylistDetails";
 // import { useContext } from "react";
 
 const App = () => {
+  // assignement of my url result of code to a variable
   const code = new URLSearchParams(window.location.search).get("code");
-
-  // const { setCode } = useContext(UseAuthContext);
-
-  // code && setCode(code);
 
   return (
     <BrowserRouter>
