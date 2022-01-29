@@ -210,7 +210,7 @@ const PlaylistsListing = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 50px;
-  border: solid white;
+  /* border: solid white; */
 `;
 
 const Wrapper = styled.div`

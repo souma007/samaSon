@@ -30,12 +30,12 @@ export default Playlist;
 const Main = styled.div`
   color: white;
   margin: 10px;
-  border: red solid;
+  box-shadow: 0px 0px 10px grey;
 `;
 
 const Cover = styled.img`
   box-shadow: 0px 0px 10px grey;
-  border: red solid;
+  border: black solid;
 `;
 
 const InfoPlaylist = styled.div``;

@@ -7,7 +7,7 @@ import SpotifyWebApi from "spotify-web-api-node";
 import { useState } from "react";
 import TrackPlaylistResult from "./TrackPlaylistResult";
 import Player from "./Player";
-import blue from "./background/blue.jpeg";
+import purple from "./background/purple.jpeg";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: "ea01f9e43e4746eca67543f410ac56d7",
@@ -90,7 +90,7 @@ const PlaylistDetails = () => {
 export default PlaylistDetails;
 
 const Main = styled.div`
-  background-image: url(${blue});
+  /* background-image: url(${purple}); */
 `;
 
 const Wrapper = styled.div`
